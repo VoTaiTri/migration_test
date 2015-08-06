@@ -1,0 +1,22 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 50
+  username: root
+  password: champion
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: migration_development
+
+test:
+  <<: *default
+  database: migration_test
+
+
+production:
+  <<: *default
+  database: migration_production
+  username: migration
+  password: <%= ENV['FELS_DATABASE_PASSWORD'] %>
